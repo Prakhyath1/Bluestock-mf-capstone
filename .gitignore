@@ -1,0 +1,7 @@
+__pycache__/
+*.pyc
+*.db
+.ipynb_checkpoints/
+venv/
+.env
+data/raw/live_nav/

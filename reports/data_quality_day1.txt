@@ -1,0 +1,19 @@
+DATA QUALITY REPORT - DAY 1
+==================================================
+
+Fund Master Records : 40
+NAV History Records : 46000
+
+Unique AMFI Codes (Fund Master): 40
+Unique AMFI Codes (NAV History): 40
+
+Validation Status: PASS
+
+Codes missing in NAV History:
+None
+
+Codes missing in Fund Master:
+None
+
+Summary:
+All AMFI codes in the Fund Master dataset are present in the NAV History dataset. Referential integrity is maintained.
