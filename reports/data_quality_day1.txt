@@ -1,19 +1,18 @@
-DATA QUALITY REPORT - DAY 1
+==================================================
+ANOMALIES & OBSERVATIONS
 ==================================================
 
-Fund Master Records : 40
-NAV History Records : 46000
+1. AMFI Code Data Type
+The amfi_code column is stored as int64 in multiple datasets. While this works for identifying funds, AMFI codes are identifiers rather than numerical values. Converting them to string during preprocessing will ensure consistent handling and prevent issues during joins or future transformations.
 
-Unique AMFI Codes (Fund Master): 40
-Unique AMFI Codes (NAV History): 40
+2. Date Columns Stored as Strings
+The launch_date, date, transaction_date, and portfolio_date columns are currently stored as string (str/object) data types. These columns should be converted to datetime format during the data cleaning phase to enable proper filtering, sorting, and time-series analysis.
 
-Validation Status: PASS
+3. Missing Values in yoy_growth_pct
+The yoy_growth_pct column in 04_monthly_sip_inflows.csv contains 12 missing values. This is expected because Year-over-Year growth requires data from the previous year, and the dataset begins in January 2022. Therefore, the first twelve months cannot have valid YoY values.
 
-Codes missing in NAV History:
-None
+4. Different Date Formats
+The live NAV data downloaded from the API uses the DD-MM-YYYY date format, whereas the provided datasets use the YYYY-MM-DD format. These different formats must be standardized before combining or merging the datasets to avoid incorrect date matching.
 
-Codes missing in Fund Master:
-None
-
-Summary:
-All AMFI codes in the Fund Master dataset are present in the NAV History dataset. Referential integrity is maintained.
+5. Quarterly Folio Count Data
+The 06_industry_folio_count.csv dataset contains records at quarterly intervals rather than monthly intervals. Extra care will be required when merging this dataset with monthly datasets to avoid introducing inaccurate or duplicated values.
